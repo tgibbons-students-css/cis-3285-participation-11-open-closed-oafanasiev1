@@ -30,7 +30,21 @@ namespace AbstractTrader
             // Not really connecting to database in this sample
             LogMessage("INFO: {0} trades processed", trades.Count());
         }
+        public interface ITradeProcessor
+        {
+            void ProcessTrades(Stream stream);
+        }
 
+
+
+
+        //public interface IInterface(Stream stream)
+        public void ProcessTrades(Stream stream)
+        {
+            LogMessage("activating trades");
+            base.ParseTrades(stream);
+
+        }
 
     }
 }

@@ -26,15 +26,20 @@ namespace AbstractTrader
 
         }
 
-        protected abstract void StoreTrades(IEnumerable<TradeRecord> trades);
+        protected virtual void StoreTrades(IEnumerable<TradeRecord> trades)
+        {
+
+        }
+
+
+
 
         public virtual void ProcessTrades(Stream stream)
         //public void ProcessTrades(string url)
         {
-            var lines = ReadTradeData(stream);
-            //var lines = ReadURLTradeData(url);
-            var trades = ParseTrades(lines);
-            StoreTrades(trades);
+            LogMessage("activating trades");
+            base.ParseTrades(stream);
+
         }
 
 

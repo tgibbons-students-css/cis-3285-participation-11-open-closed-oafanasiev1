@@ -22,6 +22,7 @@ namespace AbstractTrader
                     tradeData.Add(line);
                 }
             }
+
             return tradeData;
         }
 
@@ -32,7 +33,7 @@ namespace AbstractTrader
             var lineCount = 1;
             foreach (var line in tradeData)
             {
-                var fields = line.Split(new char[] { ',' });
+                var fields = line.Split(new char[] {','});
 
                 var trade = MapTradeDataToTradeRecord(fields);
 
@@ -69,5 +70,20 @@ namespace AbstractTrader
             LogMessage("INFO: {0} trades processed", trades.Count());
         }
 
+        public interface ITradeProcessor
+        {
+            void ProcessTrades(Stream stream);
+        }
+
+
+
+
+        //public interface IInterface(Stream stream)
+        public void ProcessTrades(Stream stream)
+        {
+            LogMessage("activating trades");
+            base.ParseTrades(stream);
+
+        }
     }
 }
